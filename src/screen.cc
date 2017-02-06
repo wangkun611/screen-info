@@ -4,10 +4,20 @@
 
 using namespace ScreenInfo;
 
-Screen::Screen(size_t width, size_t height, int colorDepth) {
+Screen::Screen(size_t left, size_t top, size_t width, size_t height, int colorDepth) {
+	this->left = left;
+	this->top = top;
 	this->width = width;
 	this->height = height;
 	this->colorDepth = colorDepth;
+}
+
+size_t Screen::getLeft() {
+	return left;
+}
+
+size_t Screen::getTop() {
+	return top;
 }
 
 size_t Screen::getWidth() {
@@ -24,13 +34,15 @@ int Screen::getColorDepth() {
 }
 
 void Screen::toJS(nbind::cbOutput output) {
-	output(width, height, colorDepth);
+	output(left, top, width, height, colorDepth);
 }
 
 
 
 NBIND_CLASS(Screen) {
-  construct<size_t, size_t, int>();
+  construct<size_t, size_t, size_t, size_t, int>();
+  method(getLeft);
+  method(getTop);
   method(getWidth);
   method(getHeight);
   method(getColorDepth);

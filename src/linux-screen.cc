@@ -9,6 +9,7 @@ ScreenInfo::Screen ScreenInfo::Screen::main() {
 	const int screen = DefaultScreen(display);
 
 	return ScreenInfo::Screen(
+		(size_t)0, (size_t)0
 		(size_t)DisplayWidth(display, screen),
 		(size_t)DisplayHeight(display, screen),
 		XDefaultDepth(display, screen)
@@ -32,6 +33,7 @@ std::vector<ScreenInfo::Screen> ScreenInfo::Screen::all() {
 		printf("depth %d\n", depth);
 
 		ScreenInfo::Screen screen = ScreenInfo::Screen(
+			(size_t)0, (size_t)0,
 			width,
 			height,
 			depth

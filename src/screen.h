@@ -6,12 +6,16 @@
 namespace ScreenInfo {
 	class Screen {
 		private:
+			size_t left;
+			size_t top;
 			size_t width;
 			size_t height;
 			int colorDepth;
 
 		public:
-			Screen(size_t width, size_t height, int colorDepth);
+			Screen(size_t left, size_t top, size_t width, size_t height, int colorDepth);
+			size_t getLeft();
+			size_t getTop();
 			size_t getWidth();
 			size_t getHeight();
 			int getColorDepth();

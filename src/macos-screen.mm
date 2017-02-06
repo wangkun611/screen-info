@@ -8,6 +8,8 @@ Screen Screen::main() {
 	NSScreen * mainScreen = [NSScreen mainScreen];
 	NSRect resolution = mainScreen.frame;
 	return Screen(
+		(size_t) resolution.origin.x,
+		(size_t) resolution.origin.y,
 		(size_t) resolution.size.width,
 		(size_t) resolution.size.height,
 		NSBitsPerPixelFromDepth(mainScreen.depth)
@@ -25,6 +27,8 @@ std::vector<Screen> Screen::all() {
 		NSScreen *screen = [screens objectAtIndex: index];
 		CGSize resolution = screen.frame.size;
 		result.push_back(Screen(
+			(size_t) resolution.origin.x,
+			(size_t) resolution.origin.y,
 			(size_t) resolution.width,
 			(size_t) resolution.height,
 			NSBitsPerPixelFromDepth(screen.depth)

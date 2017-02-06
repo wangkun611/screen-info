@@ -21,8 +21,9 @@ Screen Screen::main() {
 	// and the bottom right corner will have coordinates
 	// (horizontal, vertical)
 	return Screen(
-		(size_t) desktop.right,
-		(size_t) desktop.bottom,
+		(size_t) desktop.left, (size_t) desktop.top,
+		(size_t) (desktop.right - desktop.left),
+		(size_t) (desktop.bottom - desktop.top),
 		bitsPerPixel
 	);
 };
@@ -33,8 +34,10 @@ BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMoni
 	std::vector<Screen> *result =  (std::vector<Screen> *)dwData;
 	int bitsPerPixel = GetDeviceCaps(hdcMonitor, BITSPIXEL);
 	result->push_back(Screen(
-		(size_t) lprcMonitor->right,
-		(size_t) lprcMonitor->bottom,
+		(size_t) lprcMonitor->left,
+		(size_t) lprcMonitor->top,
+		(size_t) (lprcMonitor->right - lprcMonitor->left),
+		(size_t) (lprcMonitor->bottom - lprcMonitor->top),
 		bitsPerPixel
 	));
 
