@@ -2,14 +2,14 @@ import test from 'ava';
 import Screen from '.';
 
 const expected = process.platform === 'win32' ?
-	{width: 1024, height: 768, colorDepth: 32} :
-	{width: 1024, height: 768, colorDepth: 24};
+	{left:0,top:0,width: 1024, height: 768, colorDepth: 32} :
+	{left:0,top:0,width: 1024, height: 768, colorDepth: 24};
 
 const expectedMultiple = process.platform === 'linux' ?
-	[{width: 1024, height: 768, colorDepth: 24}, {width: 800, height: 600, colorDepth: 8}] :
+	[{left:0,top:0,width: 1024, height: 768, colorDepth: 24}, {left:0,top:0,width: 800, height: 600, colorDepth: 8}] :
 	(process.platform === 'win32' ?
-			[{width: 1024, height: 768, colorDepth: 32}] :
-			[{width: 1024, height: 768, colorDepth: 24}]
+			[{left:0,top:0,width: 1024, height: 768, colorDepth: 32}] :
+			[{left:1024,top:0,width: 1024, height: 768, colorDepth: 24}]
 	);
 
 /*
@@ -45,19 +45,21 @@ test('all: return all screens size', t => {
 	);
 });
 
-test('Screen has width and height', t => {
-	const size = new Screen(1, 2, 3);
+test('Screen has left top width and height', t => {
+	const size = new Screen(0, 0, 1, 2, 3);
+	t.is(size.left, 0);
+	t.is(size.top, 0);
 	t.is(size.width, 1);
 	t.is(size.height, 2);
 	t.is(size.colorDepth, 3);
 });
 
 test('Screen has custom toString', t => {
-	const size = new Screen(800, 600, 32);
-	t.is(size.toString(), '800x600x32');
+	const size = new Screen(0, 0, 800, 600, 32);
+	t.is(size.toString(), '0x0 800x600x32');
 });
 
 test('Screen can be stringified to json', t => {
-	const size = new Screen(800, 600, 32);
-	t.is(JSON.stringify(size), '{"width":800,"height":600,"colorDepth":32}');
+	const size = new Screen(0, 0, 800, 600, 32);
+	t.is(JSON.stringify(size), '{"left":0,"top":0,"width":800,"height":600,"colorDepth":32}');
 });
