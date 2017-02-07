@@ -50,5 +50,7 @@ std::vector<Screen> ScreenInfo::Screen::all() {
 	HDC dc = GetDC(hDesktop);
 
 	EnumDisplayMonitors(dc, NULL, MonitorEnumProc, (LPARAM)&result);
+	ReleaseDC(NULL, dc);
+
 	return result;
 }
