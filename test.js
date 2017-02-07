@@ -2,14 +2,14 @@ import test from 'ava';
 import Screen from '.';
 
 const expected = process.platform === 'win32' ?
-	{left:0,top:0,width: 1024, height: 768, colorDepth: 32} :
-	{left:0,top:0,width: 1024, height: 768, colorDepth: 24};
+	{left: 0, top: 0, width: 1024, height: 768, colorDepth: 32} :
+	{left: 0, top: 0, width: 1024, height: 768, colorDepth: 24};
 
 const expectedMultiple = process.platform === 'linux' ?
-	[{left:0,top:0,width: 1024, height: 768, colorDepth: 24}, {left:0,top:0,width: 800, height: 600, colorDepth: 8}] :
+	[{left: 0, top: 0, width: 1024, height: 768, colorDepth: 24}, {left: 0, top: 0, width: 800, height: 600, colorDepth: 8}] :
 	(process.platform === 'win32' ?
-			[{left:0,top:0,width: 1024, height: 768, colorDepth: 32}] :
-			[{left:1024,top:0,width: 1024, height: 768, colorDepth: 24}]
+			[{left: 0, top: 0, width: 1024, height: 768, colorDepth: 32}] :
+			[{left: 1024, top: 0, width: 1024, height: 768, colorDepth: 24}]
 	);
 
 /*
