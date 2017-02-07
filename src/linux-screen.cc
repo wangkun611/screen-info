@@ -9,7 +9,7 @@ ScreenInfo::Screen ScreenInfo::Screen::main() {
 	const int screen = DefaultScreen(display);
 
 	return ScreenInfo::Screen(
-		(size_t)0, (size_t)0
+		(size_t)0, (size_t)0,
 		(size_t)DisplayWidth(display, screen),
 		(size_t)DisplayHeight(display, screen),
 		XDefaultDepth(display, screen)
